@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: common-header" />
+
+<body class="d-flex flex-column">
+
+	<div class="container page-content ">
+		<div style="text-align: center; margin-top: 30px;">
+			<h2 th:text="${message}"></h2>
+			<a target="new" th:href="${github}" th:text="${github}"></a>
+		</div>
+	</div>
+	
+	<div th:replace="fragments/header :: body-scripts"> </div>
+</body>
+
+</html>
