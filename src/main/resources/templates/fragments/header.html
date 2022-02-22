@@ -7,7 +7,7 @@
 	<meta name="description" content="">
 
 	<title>My Media | Books & Albums</title>
-	<link rel="icon" href="/images/favicon.png">
+	<link rel="icon" href="/images/kramp-logo.png">
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Nunito|Roboto|Roboto+Condensed|Roboto+Slab" rel="stylesheet">
 	<!-- Bootstrap core CSS -->
@@ -36,9 +36,9 @@
 
 
 <body>
-	<div th:fragment="navbar">
-		<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top shadow-sm">
-			<a class="navbar-brand" th:href="@{/}"><img width="60" height="60" src="/images/favicon.png"></a>
+	<div style="background-color: black;" th:fragment="navbar">
+		<nav style="color: white" class="navbar navbar-expand-md navbar-dark bg-dark fixed-top shadow-sm">
+			<a class="navbar-brand" th:href="@{/}"><img width="60" height="60" src="/images/kramp-logo.png"></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
 				aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -47,9 +47,17 @@
 				<ul class="navbar-nav mr-auto font-weight-bold">
 					
 					<li class="nav-item">
-						<a class="nav-link" th:href="@{/all}"> All endpoints </a>
+						<a style="color: white" class="nav-link" th:href="@{/all}"> All endpoints </a>
 					</li>
 				
+				</ul>
+				<ul class="navbar-nav ml-auto font-weight-bold">
+					<li class="nav-item">
+						<a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}">Login </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}"> Log Out </a>
+					</li>
 				</ul>
 			</div>
 		</nav>
