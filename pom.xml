@@ -13,8 +13,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>my-media</name>
 	<description>my-media</description>
+	
 	<properties>
 		<java.version>11</java.version>
+		<spring.profiles.active>local,no-liquibase</spring.profiles.active>
 	</properties>
 	<dependencies>
 		<dependency>
