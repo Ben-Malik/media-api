@@ -44,13 +44,13 @@ public class MediaManagerImpl implements MediaManager {
         List<Media> allMedia = new ArrayList<>();
 
         CompletableFuture<Void> books = CompletableFuture.runAsync(() -> {
-            allMedia.addAll(findBooksBy(input));
+            allMedia.addAll(findBooksBy(input, false));
         });
 
         CompletableFuture<Void> albums = CompletableFuture.runAsync(() -> {
-            allMedia.addAll(findAlbumsBy(input));
+            allMedia.addAll(findAlbumsBy(input, false));
         });
-        
+
         CompletableFuture<Void> apiFuture = CompletableFuture.allOf(books, albums);
         try {
             apiFuture.get();
@@ -63,7 +63,7 @@ public class MediaManagerImpl implements MediaManager {
     }
 
     @Override
-    public List<Media> findAlbumsBy(String input) {
+    public List<Media> findAlbumsBy(String input, boolean sortOutput) {
         List<Media> searchResult = new ArrayList<>();
         RestTemplate restTemplate = new RestTemplate();
 
@@ -83,13 +83,14 @@ public class MediaManagerImpl implements MediaManager {
             searchResult.add(media);
         }
 
-        searchResult.sort(Comparator.comparing((Media::getTitle)));
-        
+        if (sortOutput) {
+            searchResult.sort(Comparator.comparing((Media::getTitle)));
+        }
         return searchResult;
     }
 
     @Override
-    public List<Media> findBooksBy(String input) {
+    public List<Media> findBooksBy(String input, boolean sortOutput) {
 
         // TODO Fix the problem of maxResult being larger than 40;
 
@@ -142,7 +143,9 @@ public class MediaManagerImpl implements MediaManager {
                 Media currentMedia = new Media(title, authors, MediaType.BOOK);
                 searchResult.add(currentMedia);
             }
-            searchResult.sort(Comparator.comparing((Media::getTitle)));
+            if (sortOutput) {
+                searchResult.sort(Comparator.comparing((Media::getTitle)));
+            }
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

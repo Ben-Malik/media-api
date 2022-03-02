@@ -21,12 +21,12 @@ public class MediaController {
 
     @GetMapping("/api/album/search/{input}")
     public @ResponseBody List<Media> getAlbums(@PathVariable("input") String input, Model model) {
-        return mediaManager.findAlbumsBy(input);
+        return mediaManager.findAlbumsBy(input, true);
     }
 
     @GetMapping("/api/book/search/{input}")
     public @ResponseBody List<Media> getBooks(@PathVariable("input") String input, Model model) {
-        return mediaManager.findBooksBy(input);
+        return mediaManager.findBooksBy(input, true);
     }
 
     @GetMapping("/api/allMedia/search/{input}")
@@ -36,13 +36,13 @@ public class MediaController {
 
     @GetMapping("/api/book/{input}")
     public String searchBook(@PathVariable("input") String input, Model model) {
-        mediaManager.findBooksBy(input);
+        mediaManager.findBooksBy(input, true);
         return "findMedia";
     }
 
     @GetMapping("/api/album/{input}")
     public String search(@PathVariable("input") String input, Model model) {
-        System.out.println(Arrays.toString(mediaManager.findAlbumsBy(input).toArray()));;
+        System.out.println(Arrays.toString(mediaManager.findAlbumsBy(input, true).toArray()));;
         return "findMedia";
     }
 
