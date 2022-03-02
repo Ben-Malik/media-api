@@ -57,6 +57,8 @@ public class MediaManagerImpl implements MediaManager {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+
+        allMedia.sort(Comparator.comparing((Media::getTitle)));
         return allMedia;
     }
 
