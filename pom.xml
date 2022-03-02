@@ -20,26 +20,26 @@
 
 	<distributionManagement>
 		<repository>
-		  <uniqueVersion>false</uniqueVersion>
-		  <id>maven.planet-ic.de</id>
-		  <name>planet-ic-releases</name>
-		  <url>maven.planet-ic.de/planet-ic-releases</url>
-		  <layout>default</layout>
+			<uniqueVersion>false</uniqueVersion>
+			<id>maven.planet-ic.de</id>
+			<name>planet-ic-releases</name>
+			<url>maven.planet-ic.de/planet-ic-releases</url>
+			<layout>default</layout>
 		</repository>
 		<snapshotRepository>
-		  <uniqueVersion>true</uniqueVersion>
-		  <id>maven.planet-ic.de</id>
-		  <name>planet-ic-snapshots</name>
-		  <url>http://maven.planet-ic.de/planet-ic-snapshots</url>
-		  <layout>legacy</layout>
+			<uniqueVersion>true</uniqueVersion>
+			<id>maven.planet-ic.de</id>
+			<name>planet-ic-snapshots</name>
+			<url>http://maven.planet-ic.de/planet-ic-snapshots</url>
+			<layout>legacy</layout>
 		</snapshotRepository>
 
 		<site>
 			<id>mojo.website</id>
 			<name>Mojo Website</name>
 			<url>scp://beaver.codehaus.org/home/projects/mojo/public_html/</url>
-		  </site>
-	  </distributionManagement>
+		</site>
+	</distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -168,11 +168,11 @@
 	<build>
 		<extensions>
 			<extension>
-			  <groupId>org.apache.maven.wagon</groupId>
-			   <artifactId>wagon-ftp</artifactId>
-			   <version>2.10</version>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ftp</artifactId>
+				<version>2.10</version>
 			</extension>
-		  </extensions>
+		</extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -186,7 +186,7 @@
 					</excludes>
 					<processTypes>
 						<web>java -jar target/my-media-0.0.1-SNAPSHOT.jar</web>
-					 </processTypes>
+					</processTypes>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -195,8 +195,12 @@
 				<version>3.0.3</version>
 				<configuration>
 					<appName>media-api-spring-boot</appName>
-				  </configuration>
-			  </plugin>
+				</configuration>
+				<includeTarget>false</includeTarget>
+				<includes>
+					<include>target/my-media-0.0.1-SNAPSHOT.jar</include>
+				</includes>
+			</plugin>
 
 		</plugins>
 	</build>
