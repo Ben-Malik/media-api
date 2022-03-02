@@ -13,10 +13,33 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>my-media</name>
 	<description>my-media</description>
-	
+
 	<properties>
 		<java.version>11</java.version>
-</properties>
+	</properties>
+
+	<distributionManagement>
+		<repository>
+		  <uniqueVersion>false</uniqueVersion>
+		  <id>maven.planet-ic.de</id>
+		  <name>planet-ic-releases</name>
+		  <url>maven.planet-ic.de/planet-ic-releases</url>
+		  <layout>default</layout>
+		</repository>
+		<snapshotRepository>
+		  <uniqueVersion>true</uniqueVersion>
+		  <id>maven.planet-ic.de</id>
+		  <name>planet-ic-snapshots</name>
+		  <url>http://maven.planet-ic.de/planet-ic-snapshots</url>
+		  <layout>legacy</layout>
+		</snapshotRepository>
+
+		<site>
+			<id>mojo.website</id>
+			<name>Mojo Website</name>
+			<url>scp://beaver.codehaus.org/home/projects/mojo/public_html/</url>
+		  </site>
+	  </distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -142,13 +165,14 @@
 
 	</dependencies>
 
-	<repositories>
-		<repository>
-		  <id>forplay-legacy</id>
-		  <url>http://forplay.googlecode.com/svn/mavenrepo</url>
-		</repository>
-	  </repositories>
 	<build>
+		<extensions>
+			<extension>
+			  <groupId>org.apache.maven.wagon</groupId>
+			   <artifactId>wagon-ftp</artifactId>
+			   <version>2.10</version>
+			</extension>
+		  </extensions>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
