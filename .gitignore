@@ -1,13 +1,11 @@
 .classpath
 .factorypath
 .idea/
-.mvn/
 .project
 .settings/
 HELP.md
-mvnw
+
 target/
-mvnw.cmd
 .DS_Store
 src/main/resources/.DS_Store
 src/main/resources/static/.DS_Store
