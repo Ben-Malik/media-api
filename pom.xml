@@ -185,7 +185,7 @@
 						</exclude>
 					</excludes>
 					<processTypes>
-						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
+						<web>java $JAVA_OPTS -cp target/classes:target/dependency/my-media-0.0.1-SNAPSHOT.jar</web>
 					 </processTypes>
 				</configuration>
 			</plugin>
