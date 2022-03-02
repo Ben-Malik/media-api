@@ -1,1 +1,1 @@
-web: java -jar target/my-media-0.0.1-SNAPSHOT.jar
+web: Java $Java_OPTS -jar target/dependency/Main.jar –port $PORT target/*.war
