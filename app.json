@@ -1,8 +1,0 @@
-{
-    "name": "heroku-springboot-media-app",
-    "buildpacks": [
-      {
-        "url": "heroku/maven"
-      }
-    ]
-  }
