@@ -19,34 +19,34 @@ public class MediaController {
     @Autowired
     private MediaManager mediaManager;
 
-    @GetMapping("/api/album/search/{input}")
+    @GetMapping("/v1/album/search/{input}")
     public @ResponseBody List<Media> getAlbums(@PathVariable("input") String input, Model model) {
         return mediaManager.findAlbumsBy(input, true);
     }
 
-    @GetMapping("/api/book/search/{input}")
+    @GetMapping("/v1/book/search/{input}")
     public @ResponseBody List<Media> getBooks(@PathVariable("input") String input, Model model) {
         return mediaManager.findBooksBy(input, true);
     }
 
-    @GetMapping("/api/allMedia/search/{input}")
+    @GetMapping("/v1/allMedia/search/{input}")
     public  @ResponseBody List<Media> searchMedia(@PathVariable("input") String input, Model model) {
         return mediaManager.findAllBy(input);
     }
 
-    @GetMapping("/api/book/{input}")
+    @GetMapping("/v1/book/{input}")
     public String searchBook(@PathVariable("input") String input, Model model) {
         mediaManager.findBooksBy(input, true);
         return "findMedia";
     }
 
-    @GetMapping("/api/album/{input}")
+    @GetMapping("/v1/album/{input}")
     public String search(@PathVariable("input") String input, Model model) {
         System.out.println(Arrays.toString(mediaManager.findAlbumsBy(input, true).toArray()));;
         return "findMedia";
     }
 
-    @GetMapping("/api/allMedia/{input}")
+    @GetMapping("/v1/allMedia/{input}")
     public String searchAllMedia(@PathVariable("input") String input, Model model) {
         System.out.println(Arrays.toString(mediaManager.findAllBy(input).toArray()));;
         return "findMedia";
