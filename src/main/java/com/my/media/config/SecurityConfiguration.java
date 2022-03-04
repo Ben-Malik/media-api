@@ -38,6 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 			"/images/**",
 			"/login",
 			"/",
+			"/home",
 			"/v1/**"		
 	};
 	
