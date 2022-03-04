@@ -14,23 +14,23 @@ public interface MediaManager {
     /**
      * Finds the books matching the given string input.
      * @param input The input to be taken into account while searching for the books.
-     * @param sortOutput The value indicating whether to sort the outcoming response.
-     * @return a list of {@linkplain Media} having matched the given input and of type {@linkplain MediaType.BOOK}. 
+     * @param sortOutput The value indicating whether to sort the out coming response.
+     * @return a list of {@linkplain Media} having matched the given input and of type {@linkplain com.my.media.enums.MediaType}.
      */
     List<Media> findBooksBy(String input, boolean sortOutput);
 
     /**
      * Finds the albums matching the given string input.
      * @param input The input to be taken into account while searching for the albums.
-     * @param sortOutput The value indicating whether to sort the outcoming response.
-     * @return a list of {@linkplain Media} having matched the given input and of type {@linkplain MediaType.ALBUM}. 
+     * @param sortOutput The value indicating whether to sort the out coming response.
+     * @return a list of {@linkplain Media} having matched the given input and of type {@linkplain com.my.media.enums.MediaType}.ALBUM.
      */
     List<Media> findAlbumsBy(String input, boolean sortOutput);
 
     /**
      * Finds the media (both Albums and books) matching the given input
      * @param input The input to be taken into account while searching for the albums.
-     * @return a list of {@linkplain Media} having matched the given input and of type {@linkplain MediaType.ALBUM} and {@linkplain MediaType.BOOK}. 
+     * @return a list of {@linkplain Media} having matched the given input and of type {@linkplain com.my.media.enums.MediaType} of both types.
      */
     List<Media> findAllBy(String input);
 }

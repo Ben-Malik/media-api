@@ -18,6 +18,6 @@ public final class APIConstants {
 
     public static final String DEFAULT_SEARCH_INPUT = "kramp hub"; //to be used when the given input text is invalid of null.
     public static final String BLANK_SPACE = " ";
-    public static final String INPUT_TERMS_SEPERATOR = "+";
+    public static final String INPUT_TERMS_SEPARATOR = "+";
 
 }

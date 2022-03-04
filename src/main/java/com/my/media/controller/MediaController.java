@@ -19,18 +19,18 @@ public class MediaController {
     private MediaManager mediaManager;
 
     @GetMapping("/v1/album/{input}")
-    public @ResponseBody List<Media> getAlbums(@PathVariable("input") String input, Model model) {
+    public @ResponseBody List<Media> getAlbums(@PathVariable("input") String input) {
         return mediaManager.findAlbumsBy(input, true);
     }
 
     @GetMapping("/v1/book/{input}")
-    public @ResponseBody List<Media> getBooks(@PathVariable("input") String input, Model model) {
+    public @ResponseBody List<Media> getBooks(@PathVariable("input") String input) {
         return mediaManager.findBooksBy(input, true);
     }
 
     @GetMapping("/v1/allMedia/{input}")
-    public  @ResponseBody List<Media> searchMedia(@PathVariable("input") String input, Model model) {
-        return mediaManager.findAllBy(null);
+    public  @ResponseBody List<Media> getAllMedia(@PathVariable("input") String input) {
+        return mediaManager.findAllBy(input);
     }
 
     @GetMapping({"/", "/home"})

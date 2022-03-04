@@ -43,7 +43,7 @@ import lombok.ToString;
  * 
  * @author ben-maliktchamalam
  */
-@Service
+@Service("MediaManagerImpl")
 public class MediaManagerImpl implements MediaManager {
 
     @Value("${upstreamLimit}")
@@ -233,7 +233,7 @@ public class MediaManagerImpl implements MediaManager {
             input = APIConstants.DEFAULT_SEARCH_INPUT;
         }
         StringBuilder sb = new StringBuilder();
-        input = input.replaceAll(APIConstants.BLANK_SPACE, APIConstants.INPUT_TERMS_SEPERATOR);
+        input = input.replaceAll(APIConstants.BLANK_SPACE, APIConstants.INPUT_TERMS_SEPARATOR);
         if (mediaType == MediaType.ALBUM) {
             sb.append(APIConstants.ITUNES_URL + input + "&limit=" + limit);
         } else {
