@@ -3,7 +3,6 @@
 
 <head th:replace="fragments/header :: common-header" />
 
-
 <body class="" th:style="'background: url(/images/background-1.jpg) no-repeat center center fixed;  height: 100%;
 	  /* Center and scale the image nicely */
 	  background-position: center;
@@ -11,89 +10,49 @@
 	  background-size: cover;'">
 	<div th:replace="fragments/header :: navbar"> </div>
 
-	<div class="container my-3 my-sm-5 page-content ">
-		<div class="row justify-content-center " id="row-login">
-			<div class="align-self-center col-sm-10 col-md-11 col-lg-9 col-xl-8 ">
-				<div class="card card-login">
-					<div class="card-body">
-						<div class="row">
+	<div class="container my-3 my-sm-5 page-content wrapper .vcenter-item">
+		<div class="row justify-content-center" id="row-login">
+			<div class="align-self-center col-sm-11 col-md-1 col-lg-9 col-xl-6 ">
+				<div class="card card-login " style="margin-top: 40%;">
+					<div class="card-body ">
+						<div style="text-align: center;" class="align-self-center">
 
 							<!-- Login Form -->
-							<div class="col-md-6 col-login">
-								<form th:action="@{/login}" method="post">
-									<div class="form-group text-center mb-2">
-										<h2 class="mb-0">Log In</h2>
-										<em>to your account</em>
+							<form th:action="@{/login}" method="post">
+								<div class="form-group text-center mb-2">
+									<h2 class="mb-0">Log In</h2>
+									<em>to your account</em>
+								</div>
+								<div class="form-group">
+									<div class="input-icon">
+										<i data-feather="user"></i>
+										<input required="required" type="text" class="form-control"
+											placeholder="Username" name="username"
+											th:classappend="${param.error} ? is-invalid">
 									</div>
-									<div class="form-group">
-										<div class="input-icon">
-											<i data-feather="user"></i>
-											<input required="required" type="text" class="form-control"
-												placeholder="Username" name="username"
-												th:classappend="${param.error} ? is-invalid">
-										</div>
+								</div>
+								<div class="form-group">
+									<div class="input-icon">
+										<i data-feather="lock"></i>
+										<input required="required" type="password" class="form-control"
+											placeholder="Password" name="password"
+											th:classappend="${param.error} ? is-invalid">
+										<div class="invalid-feedback">Incorrect username or password</div>
 									</div>
-									<div class="form-group">
-										<div class="input-icon">
-											<i data-feather="lock"></i>
-											<input required="required" type="password" class="form-control"
-												placeholder="Password" name="password"
-												th:classappend="${param.error} ? is-invalid">
-											<div class="invalid-feedback">Incorrect username or password</div>
-										</div>
+								</div>
+								<div class="form-group d-flex justify-content-between">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="loginRemember"
+											name="remember-me">
+										<label class="custom-control-label" for="loginRemember">Remember me</label>
 									</div>
-									<div class="form-group d-flex justify-content-between">
-										<div class="custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="loginRemember"
-												name="remember-me">
-											<label class="custom-control-label" for="loginRemember">Remember me</label>
-										</div>
-										<a href="#" class="text-primary small reset">Forgot
-											password ?</a>
-									</div>
-									<button type="submit" class="  btn-bao btn btn-primary btn-block">LOGIN</button>
-								</form>
-							</div>
+									<a href="#" class="text-primary small reset">Forgot
+										password ?</a>
+								</div>
+								<button type="submit" class="  btn-bao btn btn-primary btn-block">LOGIN</button>
+							</form>
 							<!-- /Login Form -->
 
-							<span class="or-divider">OR</span>
-
-							<!-- Register Form -->
-							<div class="col-md-6 col-register">
-								<form th:action="@{/newUser}" method="post">
-									<div class="form-group text-center">
-										<h2 class="bold">Register</h2>
-									</div>
-									<div class="form-group">
-										<div class="input-icon">
-											<i data-feather="mail"></i>
-											<input required="required" type="email" class="form-control"
-												th:classappend="${emailExists} ? is-invalid" name="email"
-												placeholder="Email address" th:value="${email}">
-											<div class="invalid-feedback">Email is already in use</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-icon">
-											<i data-feather="user"></i>
-											<input required="required" type="text" class="form-control"
-												th:classappend="${usernameExists} ? is-invalid" placeholder="Username"
-												name="username" th:value="${username}">
-											<div class="invalid-feedback">Username is already in use</div>
-
-										</div>
-									</div>
-									<div class="form-group">
-										<div class="input-icon">
-											<i data-feather="lock"></i> <input type="password" required="required"
-												class="form-control" name="new-password" placeholder="Password"
-												autocomplete="new-password">
-										</div>
-									</div>
-									<button type="submit" class="btn btn-outline-primary btn-block btn-bao">REGISTER</button>
-								</form>
-							</div>
-							<!-- /Register Form -->
 						</div>
 					</div>
 				</div>
