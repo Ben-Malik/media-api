@@ -35,7 +35,7 @@ public class MediaController {
 
     @GetMapping({"/", "/home"})
     public String home(Model model) {
-        String message = "Kramp Hub Recruitment - Ben Malik";
+        String message = "Ben Malik";
         String github = "https://github.com/ben-malik";
 
         model.addAttribute("message", message);
@@ -44,4 +44,8 @@ public class MediaController {
         return "index";
     }
 
+    @GetMapping("/doc")
+    public String javadoc(Model model) {
+        return "doc/index";
+    }
 }

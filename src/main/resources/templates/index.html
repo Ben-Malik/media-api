@@ -1,19 +1,297 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/header :: common-header" />
+<head th:replace="fragments/header :: common-header"/>
 
-<body class="d-flex flex-column">
+<body class="d-flex flex-column vscode-body vscode-dark">
 
-	<div class="container page-content ">
-		<div th:replace="fragments/header :: navbar"> </div>
-		<div style="text-align: center; margin-top: 30px;">
-			<h2 th:text="${message}"></h2>
-			<a target="new" th:href="${github}" th:text="${github}"></a>
-		</div>
-	</div>
-	
-	<div th:replace="fragments/header :: body-scripts"> </div>
+<div class="container page-content ">
+    <div th:replace="fragments/header :: navbar"></div>
+    <div style=" margin-top: 5%;margin-bottom: 20px">
+
+        <h3 style="font-weight: 900;"><a href="#definition">Probolem Definition</a></h3>
+        <h4 id="tech-stack">Tech Stack</h4>
+        <ol>
+            <li><strong>Backend</strong>: Java 17, Spring Boot, Maven, Hibernate, Postgresql.</li>
+            <li><strong>Frontend</strong>: HTML5, Thymeleaf, JavaScript, Bootstrap, CSS.</li>
+            <li><strong>Hosting &amp; DevOps</strong>: Heroku</li>
+        </ol>
+        <div style="margin-top: 20px; margin-bottom: 20px">
+            <h6><code style="color: black; font-weight: 800"><span style="text-decoration: underline">NB</span>: Please note that Heroku is hosting the live version of this API. Hence, some latency may occur on the first queries due to heroku.
+            If the latency occurs or persists, clone the app on your local and run it for fast tests.
+            </code></h6>
+        </div>
+        <h4 id="live">A live demo of the service app is available <a
+                href="https://media-api-spring-boot.herokuapp.com" target="new">here</a>!</h4>
+
+        <h4 id="a-live-demo-of-the-service-app-is-available-here">Java doc is available <a
+                href="https://tchamalam.com/media-api-doc" target="new">here</a>!</h4> <br>
+        <h4 id="to-run-the-app">To run the app</h4>
+        <pre><code><code><div> git clone https://github.com/kramphub-recruitment/BenMalik
+ cd BenMalik
+</div></code></code></pre>
+        <h4 id="to-create-necessary-maven-updates">To create necessary maven updates</h4>
+        <pre><code><code><div>mvn -N io.takari:maven:wrapper
+</div></code></code></pre>
+        <h4 id="to-clean-and-install">To clean and install</h4>
+        <pre><code><code><div> ./mvnw clean install
+</div></code></code></pre>
+        <h4 id="to-run-the-app-1">To run the app</h4>
+        <pre><code><code><div> ./mvnw spring-boot:run
+</div></code></code></pre>
+
+        <br>
+        <h4 id="to-run-the-app-12">To change the upstream limit</h4>
+        <pre><code><code><div> > src > main > resources > application.properties
+                
+</div></code></code> Change the <code>{upstreamLimit}</code> value to your desired one.</pre>
+
+		<h4>Import Decisions Made</h4>
+		<ol>
+			<li><code><code> findAllBy(String input)</code></code> service runs both <code>findBooksBy(String input, boolean sortOutput)</code>
+				and <code>findAlbumsBy(String input, boolean sortOutput)</code> concurrently.
+			</li>
+			<li>
+				Due to the fact that Google Book API has a restriction of <code><code>maxResult=40</code></code>, in case the <code>upstreamLimit</code>
+				is larger than the <code>maxResult</code>, the upstreamLimit is divided into chuncks of intervals and a thread pull having
+				the outcome number is created to ensure the spead of the response is as high as possible.
+			</li>
+			<li>
+				Although both <code>findAlbumsBy(String input, boolean sortOutput)</code> and <code>findBooksBy(String input, boolean sortOutput)</code> return a list of Medias, to avoid redundant sorting, only
+				the findAllBy(Strint input) does the actual storing after completion of all requests.
+			</li>
+		</ol>
+        <h4 id="the-app-is-running-on-port-8090">The app is running on Port <code>8090</code></h4>
+        <p>Go to <a href="http://localhost:8090" target="new">localhost:8090</a>.</p>
+        <h4 id="test-the-api-without-running-it-on-your-local-device-using-postman">Test the api without running it
+            on your local device using Postman.</h4>
+
+			<br><br>
+        <div id="endpoints"><br><br>
+            <h3  style="font-weight: 900;">Endpoints.</h3>
+            <p><em>Change <code>{input}</code> param with a string value say <code>Kramp Hub</code></em>.</p>
+            <p>GET: <em>v1/allMedia/{input}</em> ~
+                Returns 5 books and 5 albums corresponding the input given.</p>
+            <pre><code><code>https://media-api-spring-boot.herokuapp.com/v1/allMedia/{input}
+
+            <div style="height: 100px">
+Sample output with input: Adele
+[
+    {
+        "title": "25",
+        "authors": [
+            "Adele"
+        ],
+        "type": "ALBUM"
+    },
+    {
+        "title": "30",
+        "authors": [
+            "Adele"
+        ],
+        "type": "ALBUM"
+    },
+    {
+        "title": "Adele",
+        "authors": [
+            "Adele Bloemendaal"
+        ],
+        "type": "ALBUM"
+    },
+    {
+        "title": "Adele",
+        "authors": [
+            "Chas Newkey-Burden"
+        ],
+        "type": "BOOK"
+    },
+    {
+        "title": "Adele",
+        "authors": [
+            "Sean Smith"
+        ],
+        "type": "BOOK"
+    },
+    {
+        "title": "Adele",
+        "authors": [
+            "Katherine E. Krohn"
+        ],
+        "type": "BOOK"
+    },
+    {
+        "title": "Adèle",
+        "authors": [
+            "Leila Slimani"
+        ],
+        "type": "BOOK"
+    },
+    {
+        "title": "Skyfall - Single",
+        "authors": [
+            "Adele"
+        ],
+        "type": "ALBUM"
+    },
+    {
+        "title": "Untamed",
+        "authors": [
+            "Glennon Doyle"
+        ],
+        "type": "BOOK"
+    },
+    {
+        "title": "iTunes Festival: London 2011 - EP",
+        "authors": [
+            "Adele"
+        ],
+        "type": "ALBUM"
+    }
+]
+                            </div>
+            </code></code></pre>
+            <p>GET: <em>v1/book/{input}</em> ~
+                Returns 5 books corresponding the input given.</p>
+            <pre><code><code>https://media-api-spring-boot.herokuapp.com/v1/book/{input}
+            <div style="height: 100px">
+                 <p> Sample output with input: Kramp hub</p>
+[
+    {
+        "title": "Entscheidungstage",
+        "authors": [
+            "Stephan Lamby"
+        ],
+        "type": "BOOK"
+    },
+    {
+        "title": "Index of Patents Issued from the United States Patent Office",
+        "authors": [
+            "United States. Patent Office"
+        ],
+        "type": "BOOK"
+    },
+    {
+        "title": "Life in the Open Ocean",
+        "authors": [
+            "Joseph J. Torres",
+            "Thomas G. Bailey"
+        ],
+        "type": "BOOK"
+    },
+    {
+        "title": "The Cinema in the Arab Countries",
+        "authors": [
+            "Georges Sadoul"
+        ],
+        "type": "BOOK"
+    },
+    {
+        "title": "Urban Kiz",
+        "authors": [
+            "Kelvin Kramp"
+        ],
+        "type": "BOOK"
+    }
+]
+            </div>
+            </code></code></pre>
+            <p>GET: <em>v1/album/{input}</em> ~
+                Returns 5 albums corresponding the input given.</p>
+            <pre><code><code>https://media-api-spring-boot.herokuapp.com/v1/album/{input}
+                <div style="height: 100px">
+
+
+Sample output with input: Adele
+[
+    {
+        "title": "25",
+        "authors": [
+            "Adele"
+        ],
+        "type": "ALBUM"
+    },
+    {
+        "title": "30",
+        "authors": [
+            "Adele"
+        ],
+        "type": "ALBUM"
+    },
+    {
+        "title": "Adele",
+        "authors": [
+            "Adele Bloemendaal"
+        ],
+        "type": "ALBUM"
+    },
+    {
+        "title": "Skyfall - Single",
+        "authors": [
+            "Adele"
+        ],
+        "type": "ALBUM"
+    },
+    {
+        "title": "iTunes Festival: London 2011 - EP",
+        "authors": [
+            "Adele"
+        ],
+        "type": "ALBUM"
+    }
+]
+            </div></code></code></pre>
+        </div>
+        <h4>Amount of Time when the upstream/ maximum Result is set to 500</h4>
+        <p>  <pre><code><code>2022-03-05 10:07:52.321  INFO 42504 --- [nio-8090-exec-3] com.my.media.advise.ExecutionTimeAdvice  : Class Name: com.my.media.service.MediaManagerImpl. Method Name: findAllBy. Time taken for Execution is : 2076ms</code>
+            </code></pre>
+        </p>
+        <h4 id="to-check-the-health-of-the-api">To check the health of the api.</h4>
+        <p>
+            Run
+            <code><code>./mvn clean install spring-boot:run
+            </code></code>
+            Go to <code><code><a href="http://localhost:8090/actuator/health">http://localhost:8090/actuator/health</a></code></code>
+        </p>
+        <h4 id="the-documentation-of-the-app-is-here">The Documentation of the app is here.</h4>
+        <p><a href="https://www.tchamalam.com/media-api-doc">https://www.tchamalam.com/media-api-doc</a></p>
+
+
+    </div>
+
+    <div id="definition">
+        <br><br>
+        <h2 style="font-weight: 900;">Problem Definition</h2>
+        <p>Using your favorite Go or Java framework / libraries build a service, that will accept a request with
+            text parameter on input. It will return maximum of 5 books and maximum of 5 albums that are related to
+            the input term. The response elements will only contain title, authors(/artists) and information whether
+            it's a book or an album. For albums please use the iTunes API. For books please use Google Books API.
+            Sort the result by title alphabetically. Make sure the software is production-ready from resilience,
+            stability and performance point of view. The stability of the downstream service may not be affected by
+            the stability of the upstream services. Results originating from one upstream service (and its stability
+            /performance) may not affect the results originating from the other upstream service.</p>
+        <p>Make sure the service:</p>
+        <ul>
+            <li>Your service needs to respond within a minute;</li>
+            <li>is self-documenting</li>
+            <li>exposes metrics on response times for upstream services</li>
+            <li>exposes health check</li>
+            <li>Limit of results on upstream services must be configurable per environment and preconfigured to 5.
+            </li>
+        </ul>
+        <p>Bonus points:</p>
+        <ul>
+            <li>Think about resilience</li>
+            <li>Think about concurrency</li>
+        </ul>
+        <p>Please document how we can run it. Please shortly document your justification of technology / mechanism
+            choice.</p>
+    </div>
+</div>
+<div style="text-align: center; margin-top: 30px; margin-bottom: 20px;">
+    <code><h4 th:text="${message}"></h4></code>
+    <a target="new" th:href="${github}" th:text="${github}"></a>
+</div>
+<div th:replace="fragments/header :: body-scripts"></div>
 </body>
 
 </html>
